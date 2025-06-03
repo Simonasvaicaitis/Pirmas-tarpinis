@@ -14,13 +14,13 @@ class Book:
 
     def __str__(self):
         return (f"ID: {self.id}\n"
-                f"Title: {self.title}\n"
-                f"Author: {self.author}\n"
-                f"Release Date: {self.release_date}\n"
-                f"Genre: {self.genre}")
+                f"Pavadinimas: {self.title}\n"
+                f"Autorius: {self.author}\n"
+                f"Išleidimo metai: {self.release_date}\n"
+                f"Žanras: {self.genre}")
 
 def load_data():
-    if not os.path.exists(library_path):
+    if not os.path.exists(library_path) or os.path.getsize(library_path) == 0:
         return []
     with open(library_path, 'rb') as f:
         return pickle.load(f)
