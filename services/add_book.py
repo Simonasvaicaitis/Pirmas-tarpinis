@@ -7,4 +7,3 @@ def add_book(title, author, release_date, genre, copies):
     books.append(book)
     save_data(books)
     print(f"Knyga '{title}' pridėta, {copies} kopijos.")
-        

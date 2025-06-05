@@ -7,11 +7,9 @@ def check_overdue_books(user=None):
 
     for book in books:
         for record in book.borrowed_by:
-            # Vienodas raktas "due_date"
             due_date = datetime.strptime(record['due_date'], "%Y-%m-%d")
             if due_date < datetime.now():
                 if user:
-                    # Jei tikriname konkretų vartotoją, grąžiname True iš karto
                     if record['user'] == user:
                         return True
                 else:

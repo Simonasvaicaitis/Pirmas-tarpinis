@@ -2,22 +2,29 @@ from classes.book import load_data, save_data
 
 def return_book(book_id, user_name):
     books = load_data()
-    found = False
 
-    for book in books:
-        if book.id == book_id:
-            found = True
-            # Ieškome tiksliai to paskolinimo įrašo pagal raktą "user"
-            for record in book.borrowed_by:
-                if record['user'] == user_name:
-                    book.borrowed_by.remove(record)
-                    save_data(books)
-                    print(f"{user_name} grąžino knygą '{book.title}'.")
-                    return
-            # Jei esame radę knygą pagal ID, bet įrašo su tuo vartotoju nerandame:
-            print(f"{user_name} neturi pasiskolinęs šios knygos.")
-            return
+    found_book = None
+    for b in books:
+        if b.id == book_id:
+            found_book = b
+            break
 
-    # Jei niekaip neįėjo į vidinį grąžinimo bloką, vadinasi knyga pagal ID nerasta
-    if not found:
+    if not found_book:
         print("Knyga nerasta.")
+        return
+
+    book = found_book
+
+    found_record = None
+    for record in book.borrowed_by:
+        if record.get('user') == user_name:
+            found_record = record
+            break
+
+    if not found_record:
+        print(f"{user_name} neturi pasiskolinęs šios knygos.")
+        return
+
+    book.borrowed_by.remove(found_record)
+    save_data(books)
+    print(f"{user_name} grąžino knygą '{book.title}'.")
