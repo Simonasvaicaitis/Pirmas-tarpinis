@@ -1,4 +1,4 @@
-from classes.book import load_data, save_data
+from utilities.save_load_data import load_data, save_data
 from classes.inventory import Inventory
 
 def add_book(title, author, release_date, genre, copies):

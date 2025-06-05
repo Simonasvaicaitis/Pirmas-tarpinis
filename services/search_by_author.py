@@ -1,4 +1,4 @@
-from classes.book import load_data
+from utilities.save_load_data import load_data
 
 def search_by_author(author):
     books = load_data()

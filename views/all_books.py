@@ -1,4 +1,4 @@
-from classes.book import load_data
+from utilities.save_load_data import load_data
 
 def list_all_books():
     books = load_data()
