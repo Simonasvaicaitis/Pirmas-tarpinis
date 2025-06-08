@@ -4,17 +4,15 @@ from colorama import init, Fore, Style
 def return_book(book_id, user_name):
     books = load_data()
 
-    found_book = None
+    book = None
     for b in books:
         if b.id == book_id:
-            found_book = b
+            book = b
             break
 
-    if not found_book:
+    if not book:
         print(f"{Fore.CYAN}Knyga nerasta.")
         return
-
-    book = found_book
 
     found_record = None
     for record in book.borrowed_by:

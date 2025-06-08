@@ -1,6 +1,6 @@
 from utilities.save_load_data import load_data, save_data
 from datetime import datetime, timedelta
-from views.late_return_books import check_overdue_books
+from services.orverdue import check_overdue_books
 from colorama import init, Fore, Style
 
 def borrow_book(book_id, user_name):
@@ -10,17 +10,15 @@ def borrow_book(book_id, user_name):
         print(f"{Fore.CYAN}{user_name} turi negražintą vėluojančią knygą, daugiau skolinti negalima.")
         return
 
-    found_book = None
+    book = None
     for b in books:
         if b.id == book_id:
-            found_book = b
+            book = b
             break
 
-    if not found_book:
+    if not book:
         print("Knyga nerasta.")
         return
-
-    book = found_book
 
     if len(book.borrowed_by) >= book.total_copies:
         print(f"'{book.title}', šios knygos kopijų šiuo metu nėra.")
