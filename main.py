@@ -128,7 +128,7 @@ def main():
                     print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
 
             elif choice == '0':
-                print(f"{Fore.BLACK}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
+                print(f"{Fore.BLACK}Programa baigta.{Style.RESET_ALL}")
                 break
 
             else:

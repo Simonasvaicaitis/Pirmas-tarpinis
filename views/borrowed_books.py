@@ -11,7 +11,7 @@ def list_borrowed_books():
                   f"{Style.RESET_ALL}"
                   )
             for record in book.borrowed_by:
-                print(f"{Fore.CYAN} - Pasiskolino: {record['user']}, grąžinti iki {record['due_date']}"
+                print(f"{Fore.CYAN} - Pasiskolino: {record['user']:<20} Gražinti iki {record['due_date']}"
                       f"{Style.RESET_ALL}"
                       )
             borrowed = True

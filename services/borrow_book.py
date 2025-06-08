@@ -29,6 +29,6 @@ def borrow_book(book_id, user_name):
     due_date = (datetime.now() + timedelta(days=14)).strftime("%Y-%m-%d")
     book.borrowed_by.append({"user": user_name, "due_date": due_date})
     save_data(books)
-    print(f"{user_name} pasiskolino '{book.title}', grąžinti iki: {due_date}."
+    print(f"{user_name} pasiskolino '{book.title}', gražinti iki: {due_date}."
           f"{Style.RESET_ALL}"
           )

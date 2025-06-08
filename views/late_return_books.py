@@ -36,6 +36,8 @@ def list_overdue_books():
           f"{Style.RESET_ALL}"
           )
     for book_title, user, due_date in overdue:
-        print(f"{Fore.MAGENTA}{book_title}. Knygą pasiskolino: {user}, gražinti iki: {due_date}"
+        print(f"{Fore.MAGENTA}Pavadinimas: {str(book_title):<35}"
+              f"Knygą pasiskolino: {str(user):<30}"
+              f"Gražinti iki: {str(due_date):<13}"
               f"{Style.RESET_ALL}"
               )
