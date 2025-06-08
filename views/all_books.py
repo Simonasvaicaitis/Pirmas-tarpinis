@@ -2,7 +2,6 @@ from utilities.save_load_data import load_data
 from colorama import init, Fore, Style
 
 def list_all_books():
-    init(autoreset=True)
     books = load_data()
     if not books:
         print(f"{Fore.CYAN}Knygų nėra."
