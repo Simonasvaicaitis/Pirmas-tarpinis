@@ -7,6 +7,7 @@ from views.all_books import list_all_books
 from views.late_return_books import list_overdue_books
 from views.borrowed_books import list_borrowed_books
 from services.return_book import return_book
+from colorama import init, Fore, Style
 
 import pickle
 
@@ -14,120 +15,128 @@ import pickle
 #     pickle.dump([], f)
 
 def main():
+    init(autoreset=True)
     while True:
         try:
-            print("\nBibliotekos meniu:")
-            print("1. Pridėti knygą")
-            print("2. Pašalinti nenaudojamas knygas, senesnes nei: ")
-            print("3. Pasiskolinti knygą")
-            print("4. Ieškoti pagal pavadinimą")
-            print("5. Ieškoti pagal autorių")
-            print("6. Visų knygų sąrašas")
-            print("7. Vėluojančių knygų sąrašas")
-            print("8. Paskolintų knygų sąrašas")
-            print("9. Grąžinti knygą")
-            print("0. Baigti programą")
+            print(f"{Fore.GREEN}\nBibliotekos meniu:")
+            print(f"{Fore.YELLOW}1. Pridėti knygą")
+            print(f"{Fore.YELLOW}2. Pašalinti nenaudojamas knygas, senesnes nei: ")
+            print(f"{Fore.YELLOW}3. Pasiskolinti knygą")
+            print(f"{Fore.YELLOW}4. Ieškoti pagal pavadinimą")
+            print(f"{Fore.YELLOW}5. Ieškoti pagal autorių")
+            print(f"{Fore.YELLOW}6. Visų knygų sąrašas")
+            print(f"{Fore.YELLOW}7. Vėluojančių knygų sąrašas")
+            print(f"{Fore.YELLOW}8. Paskolintų knygų sąrašas")
+            print(f"{Fore.YELLOW}9. Grąžinti knygą")
+            print(f"{Fore.BLACK}0. Baigti programą")
+            
 
-            choice = input("Pasirinkite ką norite atlikti: ")
+            choice = input(f"{Fore.GREEN}Pasirinkite ką norite atlikti: ")
+            f"{Style.RESET_ALL}"
 
             if choice == '1':
                 try:
-                    title = input("Pavadinimas: ")
+                    title = input(f"{Fore.BLUE}Pavadinimas: ")
                     author = input("Autorius: ")
                     release = input("Išleidimo metai (YYYY): ")
                     genre = input("Žanras: ")
                     copies = int(input("Kopijų: "))
+                    f"{Style.RESET_ALL}"
                     add_book(title, author, release, genre, copies)
                 except KeyboardInterrupt as e:
-                    print(f"Klaida. {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
                 except Exception as e:
-                    print(f"Klaida pridedant knygą: {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
 
             elif choice == '2':
                 try:
-                    year = int(input("Įveskite metus (pvz. 2000): "))
+                    year = int(input(f"{Fore.BLUE}Įveskite metus (pvz. 2000): "))
                     remove_books_older_than(year)
-                    print(f"Knygos, senesnės nei {year}, buvo pašalintos.")
+                    print(f"Knygos, senesnės nei {year}, buvo pašalintos. {Style.RESET_ALL}")
                 except KeyboardInterrupt as e:
-                    print(f"Klaida. {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
                 except Exception as e:
-                    print(f"Klaida, bandykite dar kartą: {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
 
             elif choice == '3':
                 try:
-                    book_id = input("Įvesti knygos ID: ")
-                    user = input("Jūsų vardas: ")
+                    book_id = input(f"{Fore.BLUE}Įvesti knygos ID: ")
+                    user = input(f"Jūsų vardas: ")
+                    f"{Style.RESET_ALL}"
                     borrow_book(book_id, user)
                 except KeyboardInterrupt as e:
-                    print(f"Klaida. {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
                 except Exception as e:
-                    print(f"Klaida, bandykite dar kartą: {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
 
             elif choice == '4':
                 try:
-                    title = input("Įvesti pavadinimą: ")
+                    title = input(f"{Fore.BLUE}Įvesti pavadinimą: ")
+                    f"{Style.RESET_ALL}"
                     search_by_title(title)
                 except KeyboardInterrupt as e:
-                    print(f"Klaida. {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
                 except Exception as e:
-                    print(f"Klaida, bandykite dar kartą: {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
 
             elif choice == '5':
                 try:
-                    author = input("Įvesti autorių: ")
+                    author = input(f"{Fore.BLUE}Įvesti autorių: ")
+                    f"{Style.RESET_ALL}"
                     search_by_author(author)
                 except KeyboardInterrupt as e:
-                    print(f"Klaida. {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
                 except Exception as e:
-                    print(f"Klaida, bandykite dar kartą: {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
 
             elif choice == '6':
                 try:
-                    print("Knygų sąrašas:")
+                    print(f"{Fore.BLUE}Knygų sąrašas: {Style.RESET_ALL}")
                     list_all_books()
                 except KeyboardInterrupt as e:
-                    print(f"Klaida. {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
                 except Exception as e:
-                    print(f"Klaida, bandykite dar kartą: {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
 
             elif choice == '7':
                 try:
-                    print("Vėluojančių knygų sąrašas:")
+                    print(f"{Fore.BLUE}Vėluojančių knygų sąrašas: {Style.RESET_ALL}")
                     list_overdue_books()
                 except KeyboardInterrupt as e:
-                    print(f"Klaida. {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
                 except Exception as e:
-                    print(f"Klaida, bandykite dar kartą: {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
             
             elif choice == '8':
                 try:
-                    print("Paskolintų knygų sąrašas:")
+                    print(f"{Fore.BLUE}Paskolintų knygų sąrašas: {Style.RESET_ALL}")
                     list_borrowed_books()
                 except KeyboardInterrupt as e:
-                    print(f"Klaida. {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
                 except Exception as e:
-                    print(f"Klaida, bandykite dar kartą: {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
             
             elif choice == '9':
                 try:
-                    book_id = input("Įveskite knygos ID: ")
-                    user = input("Jūsų vardas: ")
+                    book_id = input(f"{Fore.BLUE}Įveskite knygos ID: ")
+                    user = input(f"Jūsų vardas: ")
+                    f"{Style.RESET_ALL}"
                     return_book(book_id, user)
                 except KeyboardInterrupt as e:
-                    print(f"Klaida. {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
                 except Exception as e:
-                    print(f"Klaida, bloga įvestis: {e}")
+                    print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
 
             elif choice == '0':
-                print("Programa baigta.")
+                print(f"{Fore.BLACK}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
                 break
 
             else:
                 print("Blogas pasirinkimas, bandykite dar kartą.")
         except KeyboardInterrupt as e:
-            print(f"Klaida. {e}")
+            print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
         except Exception as e:
-            print(f"Klaida, bandykite dar kartą: {e}")
+            print(f"{Fore.RED}Klaida, bandykite dar kartą. {e}{Style.RESET_ALL}")
 
 if __name__ == "__main__":
     main()

@@ -1,12 +1,13 @@
 from utilities.save_load_data import load_data, save_data
 from datetime import datetime, timedelta
 from views.late_return_books import check_overdue_books
+from colorama import init, Fore, Style
 
 def borrow_book(book_id, user_name):
     books = load_data()
 
     if check_overdue_books(user_name):
-        print(f"{user_name} turi negražintą vėluojančią knygą, daugiau skolinti negalima.")
+        print(f"{Fore.CYAN}{user_name} turi negražintą vėluojančią knygą, daugiau skolinti negalima.")
         return
 
     found_book = None
@@ -28,4 +29,6 @@ def borrow_book(book_id, user_name):
     due_date = (datetime.now() + timedelta(days=14)).strftime("%Y-%m-%d")
     book.borrowed_by.append({"user": user_name, "due_date": due_date})
     save_data(books)
-    print(f"{user_name} pasiskolino '{book.title}', grąžinti iki: {due_date}.")
+    print(f"{user_name} pasiskolino '{book.title}', grąžinti iki: {due_date}."
+          f"{Style.RESET_ALL}"
+          )

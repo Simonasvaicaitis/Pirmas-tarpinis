@@ -1,4 +1,5 @@
 from utilities.save_load_data import load_data, save_data
+from colorama import init, Fore, Style
 
 def return_book(book_id, user_name):
     books = load_data()
@@ -10,7 +11,7 @@ def return_book(book_id, user_name):
             break
 
     if not found_book:
-        print("Knyga nerasta.")
+        print(f"{Fore.CYAN}Knyga nerasta.")
         return
 
     book = found_book
@@ -27,4 +28,6 @@ def return_book(book_id, user_name):
 
     book.borrowed_by.remove(found_record)
     save_data(books)
-    print(f"{user_name} grąžino knygą '{book.title}'.")
+    print(f"{user_name} grąžino knygą '{book.title}'."
+          f"{Style.RESET_ALL}"
+          )
