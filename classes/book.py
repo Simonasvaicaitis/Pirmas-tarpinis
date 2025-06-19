@@ -1,5 +1,5 @@
 import uuid
-
+import data
 class Book:
     def __init__(self, title, author, release_date, genre):
         self.id = str(uuid.uuid4())
